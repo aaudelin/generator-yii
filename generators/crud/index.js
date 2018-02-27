@@ -34,6 +34,24 @@ module.exports = class extends CrudGenerator {
             enableSearch: this.enableSearch,
 
         });
+
+        this.composeWith(require.resolve('../query'), {
+            crud: true,
+            pathName: this.controllerName,
+            prefix: this.prefix,
+            saasRight: this.saasRight,
+            enableSearch: this.enableSearch,
+
+        });
+
+        this.composeWith(require.resolve('../config'), {
+            crud: true,
+            pathName: this.controllerName,
+            prefix: this.prefix,
+            saasRight: this.saasRight,
+            enableSearch: this.enableSearch,
+
+        });
     }
 
     prompting() {

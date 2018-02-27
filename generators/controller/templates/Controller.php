@@ -8,7 +8,7 @@ namespace app\controllers;
  * @see TradelabController
  *
  */
-class <%= controllerName %>Controller extends TradelabController
+class <%= name %>Controller extends TradelabController
 {
 
 	/**
@@ -43,14 +43,14 @@ class <%= controllerName %>Controller extends TradelabController
         }
         catch (InvalidParamException $e)
         {
-            $message = \Yii::t('http_exception', 'BadRequest__<%= controllerName %>__InvalidSearchParameter');
+            $message = \Yii::t('http_exception', 'BadRequest__<%= name %>__InvalidSearchParameter');
             throw new BadRequestHttpException($message);
         }
 		<% } %>
 
         // Create config to search data
-        $config = new <%= controllerName %>Config();
-        $config->setScenario(<%= controllerName %>Config::SCENARIO__WEB);
+        $config = new <%= name %>Config();
+        $config->setScenario(<%= name %>Config::SCENARIO__WEB);
         $config->load($search, '');
         <% if (prefix) { %>
         $config->advertiser_id = $advertiser->usr_id;
@@ -65,7 +65,7 @@ class <%= controllerName %>Controller extends TradelabController
         }
 
         // Launch query to rtrieve data
-        $query = <%= controllerName %>::getSearchQuery($config);
+        $query = <%= name %>::getSearchQuery($config);
         $queryCount = clone $query;
         $queryCount->orderBy(null)->limit(null)->offset(null);
         $query->limit($psize)->offset($pcursor);
@@ -78,7 +78,7 @@ class <%= controllerName %>Controller extends TradelabController
         $displayResults = [];
         foreach ($results as $item)
         {
-            /* @var $item <%= controllerName %> */
+            /* @var $item <%= name %> */
             $displayResults[] = $item->getExportableAttributes();
         }
 
