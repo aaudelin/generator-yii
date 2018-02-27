@@ -9,6 +9,7 @@
     "yeoman-generator"
   ],
   "dependencies": {
+    "uppercamelcase": "^3.0.0",
     "yeoman-generator": "^1.1.1"
   }
 }
