@@ -14,7 +14,7 @@ class CrudGenerator extends Generator {
                     controller: this.controllerName,
                     prefix: this.prefix,
                     saasRight: this.saasRight,
-                    method: this.method,
+                    enableSearch: this.enableSearch,
                     pluralize: this.pluralize,
 
                 }
@@ -31,7 +31,7 @@ module.exports = class extends CrudGenerator {
             pathName: this.controllerName,
             prefix: this.prefix,
             saasRight: this.saasRight,
-            method: this.method,
+            enableSearch: this.enableSearch,
 
         });
     }
@@ -42,20 +42,20 @@ module.exports = class extends CrudGenerator {
                 name: 'name',
                 message: 'Your controller name (example : advertiser-creative)'
             }, {
-                type: 'input',
+                type: 'confirm',
                 name: 'prefix',
-                message: 'The prefix of the URL (example : )',
-                default: '/advertisers/\<advid:\\\\d+\>'
+                message: 'Do you need to prepend the URL with the advertiser ID ?',
+                default: true
             }, {
                 type: 'confirm',
                 name: 'saasRight',
                 message: 'Check that the logged user has access to saas ?',
                 default: true
             }, {
-                type: 'input',
-                name: 'method',
-                message: 'The methods matching the http method inside the controller',
-                default: 'index'
+                type: 'confirm',
+                name: 'enableSearch',
+                message: 'Enable search possibility for index data ?',
+                default: true
             },
             {
                 type: 'confirm',
@@ -69,7 +69,7 @@ module.exports = class extends CrudGenerator {
             this.controllerName = answers.name;
             this.prefix = answers.prefix;
             this.saasRight = answers.saasRight;
-            this.method = answers.method;
+            this.enableSearch = answers.enableSearch;
             this.pluralize = answers.pluralize;
             this.log('Generating crud ');
         });

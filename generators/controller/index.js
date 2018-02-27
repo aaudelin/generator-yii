@@ -11,7 +11,7 @@ class ControllerGenerator extends Generator {
         this.creationControllerMethod = function(templateName, controllerName, dataController) {
             this.fs.copyTpl(
                 this.templatePath(templateName),
-                this.destinationPath('public/' + this.options.pathName + '/' + controllerName + '.php'), dataController
+                this.destinationPath('public/' + this.options.pathName + '/' + controllerName + 'Controller.php'), dataController
             );
         };
 
@@ -39,7 +39,7 @@ module.exports = class extends ControllerGenerator {
             this.controllerName = this.parseAdvertiserName(this.options.pathName);
             this.prefix = this.options.prefix;
             this.saasRight = this.options.saasRight;
-            this.method = this.options.method;
+            this.enableSearch = this.options.enableSearch;
 
         }
         return true;
@@ -50,7 +50,7 @@ module.exports = class extends ControllerGenerator {
         	'controllerName': this.controllerName,
             'prefix': this.prefix,
             'saasRight': this.saasRight,
-            'method': this.method}
+            'enableSearch': this.enableSearch}
         	);
     }
 

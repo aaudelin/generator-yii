@@ -4,15 +4,16 @@
     'controller' => [
         '<%= controller %>'
     ],
-    'prefix' => '<%= prefix %>',
-    'tokens' => [
+    <% if (prefix) { %>
+    'prefix' => [
         '{advid}' => '<advid:\\d+>'
     ],
+    <% } %>
     'patterns' => [
-        '<%= httpMethod %>' => '<%= method %>',
+        'GET' => 'index',
     ],
     'only' => [
-        '<%= method %>'
+        'index'
     ],
-    'pluralize' => '<%= pluralize %>',
+    'pluralize' => <%= pluralize %>,
 ]
