@@ -52,7 +52,7 @@ class <%= name %>Controller extends TradelabController
         $config = new <%= name %>Config();
         $config->setScenario(<%= name %>Config::SCENARIO__WEB);
         $config->load($search, '');
-        <% if (prefix) { %>
+        <% if (advertiserPrefix) { %>
         $config->advertiser_id = $advertiser->usr_id;
         <% } %>
 

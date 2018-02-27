@@ -12,16 +12,16 @@ namespace app\models\queries;
 class <%= name %>Config extends AbstractQueryConfig
 {
 
-    <% if (prefix) { %>
+    <% if (advertiserPrefix) { %>
     /**
      * Value to filter by advertiser ids
-     * @var int|int[]
+     * @var int
      */
     public $advertiser_id;
     <% } %>
 
     /**
-     * Value to filter by kit ids
+     * Value to filter by <%= field %>
      * @var <%= typeField %>
      */
     public $<%= field %>;
@@ -35,7 +35,7 @@ class <%= name %>Config extends AbstractQueryConfig
         return [
             <% if (webScenario) { %>
             self::SCENARIO__WEB => [
-                <% if (prefix) { %>
+                <% if (advertiserPrefix) { %>
                 '!advertiser_id',// advertiser ids cannot be massively assigned
                 <% } %>  
                 '<%= field %>',
@@ -43,7 +43,7 @@ class <%= name %>Config extends AbstractQueryConfig
             <% } %>
             <% if (cliScenario) { %>
             self::SCENARIO__CLI => [
-                <% if (prefix) { %>
+                <% if (advertiserPrefix) { %>
                 'advertiser_id',// advertiser ids can be massively assigned
                 <% } %> 
                 '<%= field %>'

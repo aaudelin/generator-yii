@@ -4,7 +4,7 @@
     'controller' => [
         '<%= controller %>'
     ],
-    <% if (prefix) { %>
+    <% if (advertiserPrefix) { %>
     'prefix' => [
         '{advid}' => '<advid:\\d+>'
     ],

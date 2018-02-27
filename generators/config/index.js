@@ -17,32 +17,32 @@ module.exports = class extends BaseGenerator {
             });
         } else {
             this.name = this.parseName(this.options.pathName);
-            this.prefix = this.options.prefix;
+            this.advertiserPrefix = this.options.advertiserPrefix;
             this.saasRight = this.options.saasRight;
             this.enableSearch = this.options.enableSearch;
 
             return this.prompt([{
-                type: 'input',
-                name: 'field',
-                message: 'A field to search for in database',
-            },
-            {
-                type: 'input',
-                name: 'typeField',
-                message: 'The type of the fiels'
-            },
-            {
-                type: 'confirm',
-                name: 'webScenario',
-                message: 'Use web scenario ?',
-                default: true
-            },
-            {
-                type: 'confirm',
-                name: 'cliScenario',
-                message: 'Use cli scenario ?',
-                default: true
-            }
+                    type: 'input',
+                    name: 'field',
+                    message: 'One database field to search for',
+                },
+                {
+                    type: 'input',
+                    name: 'typeField',
+                    message: 'The type of the field',
+                },
+                {
+                    type: 'confirm',
+                    name: 'webScenario',
+                    message: 'Use web scenario ?',
+                    default: true
+                },
+                {
+                    type: 'confirm',
+                    name: 'cliScenario',
+                    message: 'Use cli scenario ?',
+                    default: true
+                }
 
             ]).then((answers) => {
                 this.field = answers.field;
@@ -56,19 +56,19 @@ module.exports = class extends BaseGenerator {
 
     writing() {
         this.creationMethod('Config.php', this.name, {
-        	'name': this.name,
-            'prefix': this.prefix,
-            'saasRight': this.saasRight,
-            'enableSearch': this.enableSearch,
-            'tableName': this.tableName,
-            'tableId': this.tableId,
-            'field': this.field,
-            'typeField': this.typeField,
-            'webScenario': this.webScenario,
-            'cliScenario': this.cliScenario
+                'name': this.name,
+                'advertiserPrefix': this.advertiserPrefix,
+                'saasRight': this.saasRight,
+                'enableSearch': this.enableSearch,
+                'tableName': this.tableName,
+                'tableId': this.tableId,
+                'field': this.field,
+                'typeField': this.typeField,
+                'webScenario': this.webScenario,
+                'cliScenario': this.cliScenario
             },
             'Config'
-        	);
+        );
     }
 
 

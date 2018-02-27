@@ -12,7 +12,7 @@ class CrudGenerator extends Generator {
                 this.templatePath('urlManager.php'),
                 this.destinationPath('public/' + this.controllerName + '/urlManager.php'), {
                     controller: this.controllerName,
-                    prefix: this.prefix,
+                    advertiserPrefix: this.advertiserPrefix,
                     saasRight: this.saasRight,
                     enableSearch: this.enableSearch,
                     pluralize: this.pluralize,
@@ -29,29 +29,31 @@ module.exports = class extends CrudGenerator {
         this.composeWith(require.resolve('../controller'), {
             crud: true,
             pathName: this.controllerName,
-            prefix: this.prefix,
+            advertiserPrefix: this.advertiserPrefix,
             saasRight: this.saasRight,
             enableSearch: this.enableSearch,
 
         });
 
-        this.composeWith(require.resolve('../query'), {
-            crud: true,
-            pathName: this.controllerName,
-            prefix: this.prefix,
-            saasRight: this.saasRight,
-            enableSearch: this.enableSearch,
+        if (this.enableSearch) {
+            this.composeWith(require.resolve('../query'), {
+                crud: true,
+                pathName: this.controllerName,
+                advertiserPrefix: this.advertiserPrefix,
+                saasRight: this.saasRight,
+                enableSearch: this.enableSearch,
 
-        });
+            });
 
-        this.composeWith(require.resolve('../config'), {
-            crud: true,
-            pathName: this.controllerName,
-            prefix: this.prefix,
-            saasRight: this.saasRight,
-            enableSearch: this.enableSearch,
+            this.composeWith(require.resolve('../config'), {
+                crud: true,
+                pathName: this.controllerName,
+                advertiserPrefix: this.advertiserPrefix,
+                saasRight: this.saasRight,
+                enableSearch: this.enableSearch,
 
-        });
+            });
+        }
     }
 
     prompting() {
@@ -61,7 +63,7 @@ module.exports = class extends CrudGenerator {
                 message: 'Your controller name (example : advertiser-creative)'
             }, {
                 type: 'confirm',
-                name: 'prefix',
+                name: 'advertiserPrefix',
                 message: 'Do you need to prepend the URL with the advertiser ID ?',
                 default: true
             }, {
@@ -85,7 +87,7 @@ module.exports = class extends CrudGenerator {
 
         ]).then((answers) => {
             this.controllerName = answers.name;
-            this.prefix = answers.prefix;
+            this.advertiserPrefix = answers.advertiserPrefix;
             this.saasRight = answers.saasRight;
             this.enableSearch = answers.enableSearch;
             this.pluralize = answers.pluralize;

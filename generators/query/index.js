@@ -17,7 +17,7 @@ module.exports = class extends BaseGenerator {
             });
         } else {
             this.name = this.parseName(this.options.pathName);
-            this.prefix = this.options.prefix;
+            this.advertiserPrefix = this.options.advertiserPrefix;
             this.saasRight = this.options.saasRight;
             this.enableSearch = this.options.enableSearch;
 
@@ -44,7 +44,7 @@ module.exports = class extends BaseGenerator {
     writing() {
         this.creationMethod('Query.php', this.name, {
         	'name': this.name,
-            'prefix': this.prefix,
+            'advertiserPrefix': this.advertiserPrefix,
             'saasRight': this.saasRight,
             'enableSearch': this.enableSearch,
             'tableName': this.tableName,
